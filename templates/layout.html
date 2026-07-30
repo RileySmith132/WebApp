@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <!--Head section created in the layout file, so it doesn't have to be repeated across different files.-->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <!--Link the stylesheet-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <!--Title which can be changed depending on the page-->
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+
+    <body>
+        <!--Basic structure for each page, consisting of a nav bar, the main content, and then the footer.-->
+        {% include 'nav.html' %}
+        {% block content %} {% endblock %}
+        {% include 'footer.html' %}
+    </body>
+
+</html>
