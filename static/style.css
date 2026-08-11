@@ -5,7 +5,7 @@ body {
 
 .nav-link {
     margin-right: 60px;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
     color: black;
 }
@@ -16,7 +16,7 @@ body {
 
 .nav-title {
     position: absolute;
-    left: 5%;
+    left: 8%;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
@@ -33,9 +33,81 @@ body {
 }
 
 .index-main-content {
+    display: flex;
     background-color: #427dd4;
     width: 90%;
-    height: 20vh;
+    height: 50vh;
     margin: 0 auto;
     border-radius: 10px;
+}
+
+.login-nav-btn {
+    font-size: 16px;
+    margin-right: 80px;
+    background-color: #427dd4;
+    color: white;
+    border: none;
+    border-radius: 18px;
+    padding: 7px 20px 7px 20px;
+}
+
+.login-nav-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.login-nav-btn:active {
+    opacity: 0.6;
+}
+
+.home-txt {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    width: 50%;
+    padding-left: 40px;
+    margin-top: 70px;
+}
+
+.home-left {
+    width: 50%;
+    height: 100%;
+}
+
+.home-right {
+    display: flex;
+    width: 50%;
+    height: 100%;
+}
+
+.home-job-btn {
+    margin-left: 40px;
+    font-size: 16px;
+    margin-right: 80px;
+    background-color: white;
+    color: #427dd4;
+    border: none;
+    border-radius: 18px;
+    padding: 7px 20px 7px 20px;
+    font-weight: bold;
+}
+
+.home-job-btn:hover {
+    cursor: pointer;
+}
+
+.home-main-2 {
+    margin-top: 7vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 0 5% 0 5%;
+}
+
+.info {
+    background-color: #427dd4;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    height: 25vh;
 }
