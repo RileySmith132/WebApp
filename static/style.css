@@ -16,7 +16,7 @@ body {
 
 .nav-title {
     position: absolute;
-    left: 8%;
+    left: 10%;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
@@ -43,7 +43,7 @@ body {
 
 .login-nav-btn {
     font-size: 16px;
-    margin-right: 80px;
+    margin-right: 140px;
     background-color: #427dd4;
     color: white;
     border: none;
@@ -66,7 +66,9 @@ body {
     font-weight: bold;
     width: 50%;
     padding-left: 40px;
-    margin-top: 70px;
+    margin-top: 80px;
+    margin-left: 110px;
+    margin-bottom: 20px;
 }
 
 .home-left {
@@ -81,7 +83,7 @@ body {
 }
 
 .home-job-btn {
-    margin-left: 40px;
+    margin-left: 150px;
     font-size: 16px;
     margin-right: 80px;
     background-color: white;
@@ -105,6 +107,9 @@ body {
 }
 
 .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #427dd4;
     color: white;
     text-align: center;
@@ -119,4 +124,20 @@ body {
 @keyframes expand {
     0% {scale: 1;}
     100% {scale: 1.04;}
+}
+
+.home-img {
+    height: 320px;
+    margin-top: 36px;
+}
+
+.home-bold-txt {
+    display: block;
+    font-size: 20px;
+}
+
+.info-txt {
+    font-size: 16px;
+    width: 250px;
+    
 }
