@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block title %} Sign Up {% endblock %}
+
+{% block content %}
+
+    <div class="signup-container">
+        <form class="signup-form">
+            <h1 class="signup-title">Create an account</h1>
+            <p id="signup-name-txt" class="signup-txt">Name</p>
+            <input id="signup-name-input" class="signup-input" placeholder="Enter your name" required>
+            <p id="signup-email-txt" class="login-txt">Email</p>
+            <input id="signup-email-input" class="signup-input" placeholder="example@example.com" type="email" required>
+            <p id="signup-pwd1-txt" class="signup-txt">Password</p>
+            <input id="signup-pwd1-input" class="signup-input" placeholder="Create a password" type="password" required>
+            <p id="signup-pwd2-txt" class="signup-txt">Password</p>
+            <input id="signup-pwd2-input" class="signup-input" placeholder="Repeat Password" type="password" required>
+            <button class="signup-submit-btn" type="submit">Login</button>
+            <a class="signup-link" href="/login">Already have an account? Login</a>
+        </form>
+    </div>
+
+{% endblock %}
