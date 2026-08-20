@@ -5,16 +5,15 @@
  {% block content %}
 
     <div class="login-container">
-        <form class="login-form">
+        <form class="login-form" method="POST" action="/logon">
             <h1 class="login-title">Login to your account</h1>
-            <p id="name-txt" class="login-txt">Name</p>
-            <input id="name-input" class="login-input" placeholder="Enter your name" required>
             <p id="email-txt" class="login-txt">Email</p>
-            <input id="email-input" class="login-input" placeholder="example@example.com" type="email" required>
+            <input id="email-input" class="login-input" placeholder="example@example.com" type="email" name="email" required>
             <p id="pwd1-txt" class="login-txt">Password</p>
-            <input id="pwd1-input" class="login-input" placeholder="Create a password" type="password" required>
-            <p id="pwd2-txt" class="login-txt">Password</p>
-            <input id="pwd2-input" class="login-input" placeholder="Repeat Password" type="password" required>
+            <input id="login-pwd-input" class="login-input" placeholder="Enter your password" name="pwd" type="password" required>
+            {% if error %}
+                <p class="login-error">{{ error }}</p>
+            {% endif %}
             <button class="login-submit-btn" type="submit">Login</button>
             <a class="login-link" href="/signup">Don't have an account? Signup</a>
         </form>

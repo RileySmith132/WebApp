@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
+import os
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24)
 
 @app.route('/')
 def root():
@@ -35,6 +37,38 @@ def signup():
     conn.close()
 
     return redirect('/login')
+
+@app.route('/logon', methods=["POST"])
+def logon():
+    email = request.form['email']
+    pwd = request.form['pwd']
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT user_pwd, user_id FROM users WHERE user_email = ?', (email,))
+    result = cursor.fetchone()
+    conn.close()
+
+    if result:
+        stored_password, user_id = result[0], result[1]
+        if check_password_hash(stored_password, pwd):
+            session['user_id'] = user_id
+            session['user_email'] = email
+            return redirect('/')
+        
+        else:
+            error = "Incorrect Password!"
+
+    else:
+        error = 'User Does Not Exist!'
+
+    return render_template('login.html', error=error)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
