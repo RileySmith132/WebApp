@@ -5,17 +5,18 @@
 {% block content %}
 
     <div class="signup-container">
-        <form class="signup-form">
+        <form class="signup-form" method="POST" action="/signup">
             <h1 class="signup-title">Create an account</h1>
             <p id="signup-name-txt" class="signup-txt">Name</p>
-            <input id="signup-name-input" class="signup-input" placeholder="Enter your name" required>
+            <input id="signup-name-input" class="signup-input" placeholder="Enter your name" name="name" required>
             <p id="signup-email-txt" class="login-txt">Email</p>
-            <input id="signup-email-input" class="signup-input" placeholder="example@example.com" type="email" required>
+            <input id="signup-email-input" class="signup-input" placeholder="example@example.com" name="email" type="email" required>
             <p id="signup-pwd1-txt" class="signup-txt">Password</p>
-            <input id="signup-pwd1-input" class="signup-input" placeholder="Create a password" type="password" required>
+            <input id="signup-pwd1-input" class="signup-input" placeholder="Create a password" name="pwd1" type="password" required>
             <p id="signup-pwd2-txt" class="signup-txt">Password</p>
-            <input id="signup-pwd2-input" class="signup-input" placeholder="Repeat Password" type="password" required>
-            <button class="signup-submit-btn" type="submit">Login</button>
+            <input id="signup-pwd2-input" class="signup-input" placeholder="Repeat Password" name="pwd2" type="password" required>
+            <p class="pwd-error-hide">Passwords do not match!</p>
+            <button class="signup-submit-btn" type="submit" onclick="check_pwd();">Create Account</button>
             <a class="signup-link" href="/login">Already have an account? Login</a>
         </form>
     </div>
