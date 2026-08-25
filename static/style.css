@@ -353,3 +353,36 @@ body {
     color: rgb(255, 209, 123);
     margin-top: -10px;
 }
+
+.all-jobs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 50px 50px 0px 50px;
+}
+
+.job-container {
+    background-color: #427dd4;
+    color: white;
+    border-radius: 30px;
+    height: 300px;
+    padding-left: 20px;
+}
+
+.query-btn {
+    color: #427dd4;
+    background-color: white;
+    font-size: 15px;
+    border: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 20px;
+}
+
+.query-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.query-btn:active {
+    opacity: 0.6;
+}

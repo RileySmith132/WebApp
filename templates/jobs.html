@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block title %} Jobs {% endblock %}
+
+{% block content %}
+
+    <div class="all-jobs-container">
+        {% for job in jobs %}
+            <div class="job-container" id="job--{ loop.index }">
+                <h1 class="job-title">{{ job[3] }}</h1>
+                <p job-desc>{{ job[2] }}</p>
+                <p class="job-location">{{ job[4] }}</p>
+                <p class="job-user-name">{{ job[6] }}</p>
+                <p class="job-user-email">{{ job[7] }}</p>
+                <button class="query-btn">Query</button>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

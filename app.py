@@ -70,6 +70,32 @@ def logout():
     session.clear()
     return redirect('/')
 
+@app.route('/list-job')
+def list_job():
+    if 'user_email' not in session:
+        return redirect('/login')
+
+    return render_template('list-job.html')
+
+@app.route('/jobs')
+def jobs():
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    query = '''
+        SELECT jobs.*, users.user_name, users.user_email 
+        FROM jobs 
+        JOIN users ON jobs.user_id = users.user_id 
+        WHERE jobs.completed = "no"
+    '''
+
+    jobs = cursor.execute(query).fetchall()
+
+    conn.close()
+
+    return render_template('jobs.html', jobs=jobs)
+
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
     app.run()
