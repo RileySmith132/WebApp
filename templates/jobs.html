@@ -8,10 +8,11 @@
         {% for job in jobs %}
             <div class="job-container" id="job--{ loop.index }">
                 <h1 class="job-title">{{ job[3] }}</h1>
-                <p job-desc>{{ job[2] }}</p>
+                <p class="job-desc">{{ job[2] }}</p>
                 <p class="job-location">{{ job[4] }}</p>
-                <p class="job-user-name">{{ job[6] }}</p>
-                <p class="job-user-email">{{ job[7] }}</p>
+                <p class="job-user-name">{{ job[7] }}</p>
+                <p class="job-user-email">{{ job[8] }}</p>
+                <p class="job-pay">${{ job[6] }}</p>
                 <button class="query-btn">Query</button>
             </div>
         {% endfor %}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 import os
@@ -95,6 +95,29 @@ def jobs():
     conn.close()
 
     return render_template('jobs.html', jobs=jobs)
+
+@app.route('/list', methods=['POST'])
+def list():
+    title = request.form['job-title']
+    desc = request.form['job-desc']
+    location = request.form['job-location']
+    pay = request.form['job-pay']
+    completed = 'no'
+    user_id = session['user_id']
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+
+    cursor.execute(
+        'INSERT INTO jobs (user_id, job_desc, job_title, job_location, pay, completed) VALUES (?, ?, ?, ?, ?, ?)',
+        (user_id, desc, title, location, pay, completed)
+    )
+
+    conn.commit()
+    conn.close()
+
+    flash('You have successfuly listed a job', 'success')
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)

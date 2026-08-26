@@ -16,7 +16,18 @@
     <body>
         <!--Basic structure for each page, consisting of a nav bar, the main content, and then the footer.-->
         {% include 'nav.html' %}
-        {% block content %} {% endblock %}
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
         {% include 'footer.html' %}
     </body>
 

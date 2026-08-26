@@ -4,6 +4,19 @@
 
 {% block content %}
 
-    
+    <div class="list-job-container">
+        <form class="list-job-form" method="POST" action="/list">
+            <h1 class="list-title">List a job</h1>
+            <p class="list-job-p">Job Title</p>
+            <input class="list-job-input" placeholder="Job Title" name="job-title" required>
+            <p class="list-job-p">Job Description</p>
+            <input class="list-job-input" placeholder="Description" name="job-desc" required>
+            <p class="list-job-p">Job Location</p>
+            <input class="list-job-input" placeholder="e.g Albany, Silverdale, etc" name="job-location" required>
+            <p class="list-job-p">Job Pay</p>
+            <input class="list-job-input" placeholder="Pay" type="number" name="job-pay" required>
+            <button class="list-btn" type="submit">List job</button>
+        </form>
+    </div>
 
 {% endblock %}
