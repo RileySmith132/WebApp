@@ -636,7 +636,7 @@ body {
 }
 
 .inquiries-top {
-    height: 400px;
+    margin-bottom: 100px;
 }
 
 .inquiry-top-title, .inquiry-bottom-title {
@@ -647,4 +647,74 @@ body {
     text-align: center;
     font-size: 17px;
     margin-top: 50px;
+}
+
+.my_inquiry {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 75%;
+    min-height: 50vh;
+    margin: 40px auto;
+    background-color: #427dd4;
+    color: white;
+    border-radius: 16px;
+    padding: 50px 40px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.my-inquiry-left {
+    width: 50%;
+    padding-right: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-inquiry-right {
+    width: 50%;
+    padding-left: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Inner Elements */
+.my-inquiry-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+}
+
+.my-inquiry-desc {
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 0 15px 0;
+    opacity: 0.95;
+}
+
+.my-inquiry-location,
+.my-inquiry-user-name,
+.my-inquiry-user-email,
+.my-inquiry-pay {
+    font-size: 14px;
+    margin: 5px 0;
+    opacity: 0.9;
+}
+
+.my-inquiry-p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 14px 0;
+}
+
+#my-inquiry-status {
+    font-weight: bold;
+}
+
+.inquiry-details-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
 }

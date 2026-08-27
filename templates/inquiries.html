@@ -4,10 +4,30 @@
 
 {% block content %}
 
-    <div class="inquiries-top">
-        <h1 class="inquiry-top-title">My inquiries</h1>
-        {% if inquiries %}
+    <h1 class="inquiry-top-title">My inquiries</h1>
+    {% if my_inquiries %}
 
+        <div class="inquiries-top">
+            {% for inquiry in my_inquiries %}
+                <div class="my_inquiry">
+                    <div class="my-inquiry-left">
+                        <h1 class="my-inquiry-title">{{ inquiry['job_title'] }}</h1>
+                        <p class="my-inquiry-desc">{{ inquiry['job_desc'] }}</p>
+                        <p class="my-inquiry-location">{{ inquiry['job_location'] }}</p>
+                        <p class="my-inquiry-user-name">{{ inquiry['lister_name'] }}</p>
+                        <p class="my-inquiry-user-email">{{ inquiry['lister_email'] }}</p>
+                        <p class="my-inquiry-pay">${{ inquiry['pay'] }}</p>
+                    </div>
+
+                    <div class="my-inquiry-right">
+                        <h1 class="inquiry-details-title">Inquiry Details</h1>
+                        <p class="my-inquiry-p">My phone number: {{ inquiry['phone'] }}</p>
+                        <p class="my-inquiry-p">My reason: {{ inquiry['why'] }}</p>
+                        <p class="my-inquiry-p">Time that best suits me: {{ inquiry['time'] }}</p>
+                        <p class="my-inquiry-p" id="my-inquiry-status">Status: {{ inquiry['status'] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
 
         {% else %}
             <p class="no-inquiries">You have no inquiries.</p>
@@ -16,7 +36,8 @@
 
     <div class="inquiries-bottom">
         <h1 class="inquiry-bottom-title">Pending inquiries</h1>
-        {% if inquiries %}
+        {% if pending_inquiries %}
+
 
 
         {% else %}

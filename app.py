@@ -36,6 +36,7 @@ def signup():
     conn.commit()
     conn.close()
 
+    flash('Account created', 'success')
     return redirect('/login')
 
 @app.route('/logon', methods=["POST"])
@@ -55,6 +56,7 @@ def logon():
         if check_password_hash(stored_password, pwd):
             session['user_id'] = user_id
             session['user_email'] = email
+            flash('Logged in successfully', 'success')
             return redirect('/')
         
         else:
@@ -68,6 +70,7 @@ def logon():
 @app.route('/logout')
 def logout():
     session.clear()
+    flash('Logged out', 'success')
     return redirect('/')
 
 @app.route('/list-job')
@@ -145,13 +148,14 @@ def inquire():
     lister_id = request.form['lister_id']
     job_id = request.form['job_id']
     user_id = session['user_id']
+    status = 'pending'
 
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
 
     cursor.execute(
-        'INSERT INTO inquiries (lister_id, job_id, user_id, phone, why, time) VALUES (?, ?, ?, ?, ?, ?)',
-        (lister_id, job_id, user_id, phone, why, time)
+        'INSERT INTO inquiries (status, lister_id, job_id, user_id, phone, why, time) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (status, lister_id, job_id, user_id, phone, why, time)
     )
 
     conn.commit()
@@ -165,15 +169,45 @@ def inquiries():
     if 'user_email' not in session:
         return redirect('/login')
 
+    user_id = session['user_id']
+
     conn = sqlite3.connect('app.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
-    inquiries = cursor.execute('SELECT * FROM inquiries')
+    my_inquiries = cursor.execute('''
+            SELECT 
+                inquiries.*, 
+                jobs.job_title, 
+                jobs.job_desc,
+                jobs.pay, 
+                jobs.job_location,
+                users.user_name AS lister_name,
+                users.user_email AS lister_email
+            FROM inquiries
+            JOIN jobs ON inquiries.job_id = jobs.job_id
+            JOIN users ON inquiries.lister_id = users.user_id
+            WHERE inquiries.user_id = ?
+        ''', (user_id,)).fetchall()
+
+    pending_inquiries = cursor.execute('''
+            SELECT 
+                inquiries.*, 
+                jobs.job_title, 
+                jobs.job_desc,
+                jobs.pay, 
+                jobs.job_location,
+                users.user_name AS applicant_name,
+                users.user_email AS applicant_email
+            FROM inquiries
+            JOIN jobs ON inquiries.job_id = jobs.job_id
+            JOIN users ON inquiries.user_id = users.user_id
+            WHERE inquiries.lister_id = ?
+        ''', (user_id,)).fetchall()
 
     conn.close()
 
-    return render_template('inquiries.html', inquiries=inquiries)
+    return render_template('inquiries.html', my_inquiries=my_inquiries, pending_inquiries=pending_inquiries)
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
