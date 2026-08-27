@@ -634,3 +634,17 @@ body {
     cursor: pointer;
     transform: translateY(-2px);
 }
+
+.inquiries-top {
+    height: 400px;
+}
+
+.inquiry-top-title, .inquiry-bottom-title {
+    text-align: center;
+}
+
+.no-inquiries {
+    text-align: center;
+    font-size: 17px;
+    margin-top: 50px;
+}

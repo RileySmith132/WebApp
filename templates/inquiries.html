@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %} Inquiries {% endblock %}
+
+{% block content %}
+
+    <div class="inquiries-top">
+        <h1 class="inquiry-top-title">My inquiries</h1>
+        {% if inquiries %}
+
+
+        {% else %}
+            <p class="no-inquiries">You have no inquiries.</p>
+        {% endif %}
+    </div>
+
+    <div class="inquiries-bottom">
+        <h1 class="inquiry-bottom-title">Pending inquiries</h1>
+        {% if inquiries %}
+
+
+        {% else %}
+            <p class="no-inquiries">You have no pending inquiries.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

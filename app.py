@@ -160,6 +160,21 @@ def inquire():
     flash('Inquiry Sent', 'success')
     return redirect('/')
 
+@app.route('/inquiries')
+def inquiries():
+    if 'user_email' not in session:
+        return redirect('/login')
+
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    inquiries = cursor.execute('SELECT * FROM inquiries')
+
+    conn.close()
+
+    return render_template('inquiries.html', inquiries=inquiries)
+
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
     app.run()
