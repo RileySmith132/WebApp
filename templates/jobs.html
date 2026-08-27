@@ -13,7 +13,7 @@
                 <p class="job-user-name">{{ job[7] }}</p>
                 <p class="job-user-email">{{ job[8] }}</p>
                 <p class="job-pay">${{ job[6] }}</p>
-                <button class="query-btn">Query</button>
+                <a href="{{ url_for('job_details', job_id=job[1]) }}"><button class="query-btn">Query</button></a>
             </div>
         {% endfor %}
     </div>

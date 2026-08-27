@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, flash, url_for
+from flask import Flask, render_template, request, redirect, session, flash, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 import os
@@ -116,8 +116,25 @@ def list():
     conn.commit()
     conn.close()
 
-    flash('You have successfuly listed a job', 'success')
+    flash('Job has been listed', 'success')
     return redirect('/')
+
+@app.route('/job/<int:job_id>')
+def job_details(job_id):
+    if 'user_email' not in session:
+        return redirect('/login')
+
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    job = cursor.execute('SELECT * FROM jobs WHERE job_id = ?', (job_id,)).fetchone()
+    conn.close()
+
+    if job is None:
+        abort(404)
+
+    return render_template('job_details.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)
