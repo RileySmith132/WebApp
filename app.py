@@ -134,7 +134,31 @@ def job_details(job_id):
     if job is None:
         abort(404)
 
-    return render_template('job_details.html')
+    return render_template('job_details.html', job=job)
+
+
+@app.route('/inquire', methods=["POST"])
+def inquire():
+    phone = request.form['number']
+    why = request.form['reason']
+    time = request.form['date']
+    lister_id = request.form['lister_id']
+    job_id = request.form['job_id']
+    user_id = session['user_id']
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+
+    cursor.execute(
+        'INSERT INTO inquiries (lister_id, job_id, user_id, phone, why, time) VALUES (?, ?, ?, ?, ?, ?)',
+        (lister_id, job_id, user_id, phone, why, time)
+    )
+
+    conn.commit()
+    conn.close()
+
+    flash('Inquiry Sent', 'success')
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)

@@ -534,3 +534,103 @@ body {
     from {opacity: 1;}
     to {opacity: 0; visibility: hidden;}
 }
+
+
+.inquire-content {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 75%;
+    min-height: 60vh;
+    margin: 70px auto 155px;
+    background-color: #427dd4;
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.inquire-info {
+    width: 50%;
+    padding: 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.inquire-info-title {
+    margin: 0 0 30px 0;
+    font-size: 26px;
+    height: 31px;
+}
+
+.inquire-info-jobtitle,
+.inquire-jobdesc,
+.inquire-location,
+.inquire-pay {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+.inquire-userinput {
+    width: 50%;
+    padding: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.inquire-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+}
+
+.inquire-form-title {
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-size: 26px;
+    height: 31px;
+}
+
+.inquire-p {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.inquire-input {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    outline: none;
+}
+
+.inquire-input:focus {
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+.inquire-form-btn {
+    margin-top: 15px;
+    padding: 14px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    width: 100%;
+    background-color: white;
+    color: #427dd4;
+}
+
+.inquire-form-btn:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}

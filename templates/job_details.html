@@ -1,1 +1,32 @@
 {% extends 'layout.html' %}
+
+{% block title %} Inquire {% endblock %}
+
+{% block content %}
+
+    <div class="inquire-content">
+        <div class="inquire-info">
+            <h1 class="inquire-info-title">Job info</h1>
+            <p class="inquire-info-jobtitle">Job title: {{ job[3] }}</p>
+            <p class="inquire-jobdesc">Description: {{ job[2] }}</p>
+            <p class="inquire-location">Location: {{ job[4] }}</p>
+            <p class="inquire-pay">Pay: ${{ job[6] }}</p>
+        </div>
+
+        <div class="inquire-userinput">
+            <form class="inquire-form" method="POST" action="/inquire">
+                <h1 class="inquire-form-title">Inquire</h1>
+                <p class="inquire-p">Phone number</p>
+                <input class="inquire-input" name="number" type="tel" placeholder="phone" required>
+                <p class="inquire-p">Why should you get this job?</p>
+                <input class="inquire-input" name="reason" placeholder="Why would you be best" required>
+                <p class="inquire-p">When would best suit you to do this job?</p>
+                <input class="inquire-input" name="date" type="datetime-local" required>
+                <button class="inquire-form-btn" type="submit">Inquire</button>
+                <input type="hidden" name="job_id" value="{{ job.job_id }}">
+                <input type="hidden" name="lister_id" value="{{ job.user_id }}">
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
