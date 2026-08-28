@@ -24,7 +24,19 @@
                         <p class="my-inquiry-p">My phone number: {{ inquiry['phone'] }}</p>
                         <p class="my-inquiry-p">My reason: {{ inquiry['why'] }}</p>
                         <p class="my-inquiry-p">Time that best suits me: {{ inquiry['time'] }}</p>
-                        <p class="my-inquiry-p" id="my-inquiry-status">Status: {{ inquiry['status'] }}</p>
+                        {% if inquiry['status'] =='accepted' %}
+                            <div class="inquiry-accepted">
+                                <h1 class="accepted-title">Your inquiry was accepted</h1>
+                                <p class="inquiry-accepted-p">{{ inquiry['lister_name']}} accepted your inquiry. They will be in touch soon via phone or email.</p>
+                                <a href="/ok-accepted"><button class="ok-btn">ok</button></a>
+                            </div>
+
+                        {% elif inquiry['status'] =='declined' %}
+
+
+                        {% else %}
+                            <p class="my-inquiry-p" id="my-inquiry-status">Status: {{ inquiry['status'] }}</p>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -38,7 +50,34 @@
         <h1 class="inquiry-bottom-title">Pending inquiries</h1>
         {% if pending_inquiries %}
 
+            {% for inquiry in pending_inquiries %}
+                {% if inquiry['status'] == 'pending' %}
+                    <div class="my_inquiry">
+                        <div class="my-inquiry-left">
+                            <h1 class="my-inquiry-title">{{ inquiry['job_title'] }}</h1>
+                            <p class="my-inquiry-desc">{{ inquiry['job_desc'] }}</p>
+                            <p class="my-inquiry-location">Location: {{ inquiry['job_location'] }}</p>
+                            <p class="my-inquiry-user-name">{{ inquiry['lister_name'] }}</p>
+                            <p class="my-inquiry-user-email">{{ inquiry['lister_email'] }}</p>
+                            <p class="my-inquiry-pay">Pay: ${{ inquiry['pay'] }}</p>
+                        </div>
 
+                        <div class="my-inquiry-right">
+                            <h1 class="inquiry-details-title">Inquiry Details</h1>
+                            <p class="my-inquiry-p">Applicant name: {{ inquiry['applicant_name'] }}</p>
+                            <p class="my-inquiry-p">Applicant email: {{ inquiry['applicant_email'] }}</p>
+                            <p class="my-inquiry-p">Applicant phone number: {{ inquiry['phone'] }}</p>
+                            <p class="my-inquiry-p">Applicant reason: {{ inquiry['why'] }}</p>
+                            <p class="my-inquiry-p">Time that best suits the applicant: {{ inquiry['time'] }}</p>
+                            <a href="/accept-inquiry/{{ inquiry['inquiry_id'] }}"><button class="accept-inquiry-btn">Accept</button></a>
+                            <a href="/decline-inquiry/{{ inquiry['inquiry_id'] }}"><button class="decline-inquiry-btn">Delcine</button></a>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <p class="no-inquiries">You have no pending inquiries.</p>
+                {% endif %}
+            {% endfor %}
 
         {% else %}
             <p class="no-inquiries">You have no pending inquiries.</p>

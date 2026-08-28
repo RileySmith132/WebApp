@@ -94,6 +94,7 @@ def jobs():
     '''
 
     jobs = cursor.execute(query).fetchall()
+    
 
     conn.close()
 
@@ -191,23 +192,76 @@ def inquiries():
         ''', (user_id,)).fetchall()
 
     pending_inquiries = cursor.execute('''
-            SELECT 
-                inquiries.*, 
-                jobs.job_title, 
-                jobs.job_desc,
-                jobs.pay, 
-                jobs.job_location,
-                users.user_name AS applicant_name,
-                users.user_email AS applicant_email
-            FROM inquiries
-            JOIN jobs ON inquiries.job_id = jobs.job_id
-            JOIN users ON inquiries.user_id = users.user_id
-            WHERE inquiries.lister_id = ?
-        ''', (user_id,)).fetchall()
+        SELECT 
+            inquiries.*, 
+            jobs.job_title, 
+            jobs.job_desc,
+            jobs.pay, 
+            jobs.job_location,
+            applicant.user_name AS applicant_name,
+            applicant.user_email AS applicant_email,
+            lister.user_name AS lister_name,
+            lister.user_email AS lister_email
+        FROM inquiries
+        JOIN jobs ON inquiries.job_id = jobs.job_id
+        JOIN users AS applicant ON inquiries.user_id = applicant.user_id
+        JOIN users AS lister ON inquiries.lister_id = lister.user_id
+        WHERE inquiries.lister_id = ?
+    ''', (user_id,)).fetchall()
 
     conn.close()
 
     return render_template('inquiries.html', my_inquiries=my_inquiries, pending_inquiries=pending_inquiries)
+
+@app.route('/accept-inquiry/<int:inquiry_id>')
+def accept(inquiry_id):
+    inquiry_status = 'accepted'
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT job_id FROM inquiries WHERE inquiry_id = ?', (inquiry_id,))
+    result = cursor.fetchone()
+
+    if result is None:
+        conn.close()
+        abort(404)
+
+    job_id = result[0]
+
+    cursor.execute('UPDATE inquiries SET status = ? WHERE inquiry_id = ?', (inquiry_status, inquiry_id,))
+    cursor.execute('UPDATE jobs SET completed = ? WHERE job_id = ?', ('yes', job_id,))
+
+    conn.commit()
+    conn.close()
+
+    flash('Inquiry accepted, contact the applicant via their phone number or email which is on the inquiry, which can be found on the past jobs page.', 'success')
+    return redirect('/past-jobs')
+
+
+@app.route('/decline-inquiry/<int:inquiry_id>')
+def decline(inquiry_id):
+    inquiry_status = 'declined'
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+
+    cursor.execute('UPDATE inquiries SET status = ? WHERE inquiry_id = ?', (inquiry_status, inquiry_id,))
+
+    conn.commit()
+    conn.close()
+
+    flash('Inquiry declined', 'success')
+    return redirect('/inquiries')
+
+
+@app.route('/past-jobs')
+def past_jobs():
+    if 'user_email' not in session:
+        return redirect('/login')
+
+    return render_template('past-jobs.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=5000)

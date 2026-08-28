@@ -527,7 +527,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
-    animation: fadeOut 0.5s ease 1.5s forwards;
+    animation: fadeOut 0.5s ease 2.5s forwards;
 }
 
 @keyframes fadeOut {
@@ -647,6 +647,7 @@ body {
     text-align: center;
     font-size: 17px;
     margin-top: 50px;
+    margin-bottom: 250px;
 }
 
 .my_inquiry {
@@ -717,4 +718,79 @@ body {
     font-size: 24px;
     font-weight: bold;
     margin: 0 0 15px 0;
+}
+
+.my-inquiry-right a {
+    display: inline;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+.accept-inquiry-btn,
+.decline-inquiry-btn {
+    padding: 10px 150px;
+    border-radius: 20px;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: white;
+    color: #427dd4;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.accept-inquiry-btn {
+    margin-right: 8px;
+}
+
+.accept-inquiry-btn:hover,
+.decline-inquiry-btn:hover {
+    opacity: 0.8;
+}
+
+.accept-inquiry-btn:active,
+.decline-inquiry-btn:active {
+    opacity: 0.6;
+}
+
+.inquiry-accepted {
+    margin-top: 25px;
+    padding: 22px 25px;
+    background-color: #eaf7ee;
+    border: 2px solid black;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.accepted-title {
+    margin: 0 0 12px 0;
+    font-size: 24px;
+    color: black;
+}
+
+.inquiry-accepted-p {
+    margin: 0 auto 20px auto;
+    max-width: 450px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: black;
+}
+
+.ok-btn {
+    padding: 10px 28px;
+    border: none;
+    border-radius: 7px;
+    background-color: #427dd4;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.ok-btn:hover {
+    background-color: #356bb9;
+    transform: translateY(-1px);
 }
