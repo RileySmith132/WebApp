@@ -1,1 +1,80 @@
 {% extends 'layout.html' %}
+
+{% block title %} Past Jobs {% endblock %}
+
+{% block content %}
+
+<h1 class="past-jobs-top-title">Jobs I applied for</h1>
+
+<div class="past-jobs-top">
+
+    {% if my_jobs %}
+
+        {% for job in my_jobs %}
+
+            <div class="past-job">
+                <div class="past-job-left">
+                    <h1 class="past-job-title">{{ job['job_title'] }}</h1>
+                    <p class="past-job-desc">Description: {{ job['job_desc'] }}</p>
+                    <p class="past-job-location">Location: {{ job['job_location'] }}</p>
+                    <p class="past-job-user-name">Name: {{ job['lister_name'] }}</p>
+                    <p class="past-job-user-email">Email: {{ job['lister_email'] }}</p>
+                    <p class="past-job-pay">Pay: ${{ job['pay'] }}</p>
+                </div>
+
+                <div class="past-job-right">
+                    <h1 class="past-job-details-title">Inquiry Details</h1>
+                    <p class="past-job-p">My phone number: {{ job['phone'] }}</p>
+                    <p class="past-job-p">My reason: {{ job['why'] }}</p>
+                    <p class="past-job-p">Time that best suits me: {{ job['time'] }}</p>
+                    <p class="past-job-p">Status: {{ job['status'] }}</p>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+        <p class="past-job-none">You have no past jobs.</p>
+    {% endif %}
+
+</div>
+
+
+<h1 class="past-jobs-bottom-title">Jobs I listed</h1>
+
+<div class="past-jobs-bottom">
+
+    {% if my_listed %}
+
+        {% for job in my_listed %}
+
+            <div class="past-job">
+                <div class="past-job-left">
+                    <h1 class="past-job-title">{{ job['job_title'] }}</h1>
+                    <p class="past-job-desc">Description: {{ job['job_desc'] }}</p>
+                    <p class="past-job-location">Location: {{ job['job_location'] }}</p>
+                    <p class="past-job-user-name">Name: {{ job['lister_name'] }}</p>
+                    <p class="past-job-user-email">Email: {{ job['lister_email'] }}</p>
+                    <p class="past-job-pay">Pay: ${{ job['pay'] }}</p>
+                </div>
+
+                <div class="past-job-right">
+                    <h1 class="past-job-details-title">Applicant Details</h1>
+                    <p class="past-job-p">Applicant name: {{ job['applicant_name'] }}</p>
+                    <p class="past-job-p">Applicant email: {{ job['applicant_email'] }}</p>
+                    <p class="past-job-p">Applicant phone number: {{ job['phone'] }}</p>
+                    <p class="past-job-p">Applicant reason: {{ job['why'] }}</p>
+                    <p class="past-job-p">Applicant time: {{ job['time'] }}</p>
+                    <p class="past-job-p">Status: {{ job['status'] }}</p>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+        <p class="past-job-none">You have no completed jobs that you listed.</p>
+    {% endif %}
+
+</div>
+
+{% endblock %}

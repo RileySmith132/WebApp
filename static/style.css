@@ -639,8 +639,14 @@ body {
     margin-bottom: 100px;
 }
 
-.inquiry-top-title, .inquiry-bottom-title {
+.inquiry-bottom-title {
     text-align: center;
+    margin-top: 100px;
+}
+
+.inquiry-top-title {
+    text-align: center;
+    margin-top: 50px;
 }
 
 .no-inquiries {
@@ -793,4 +799,111 @@ body {
 .ok-btn:hover {
     background-color: #356bb9;
     transform: translateY(-1px);
+}
+
+.inquiry-declined {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 12px;
+    background-color: #f8e6e6;
+    border: 2px solid black;
+    text-align: center;
+}
+
+.declined-title {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+    color: black;
+}
+
+.inquiry-declined-p {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.inquiry-declined .ok-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 6px;
+    background-color: #427dd4;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.past-jobs-top-title,
+.past-jobs-bottom-title {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.past-jobs-bottom-title {
+    margin-top: 250px;
+}
+
+.past-jobs-top,
+.past-jobs-bottom {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.past-job {
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.past-job-left,
+.past-job-right {
+    width: 50%;
+    padding: 25px;
+    background-color: #427dd4;
+    color: white;
+    box-sizing: border-box;
+}
+
+.past-job-title {
+    margin-top: 0;
+    font-size: 28px;
+    color: white;
+}
+
+.past-job-desc {
+    font-size: 16px;
+    color: white;
+}
+
+.past-job-location {
+    font-size: 16px;
+    color: white;
+}
+
+.past-job-user-name,
+.past-job-user-email,
+.past-job-pay {
+    font-size: 16px;
+    color: white;
+}
+
+.past-job-details-title {
+    margin-top: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.past-job-p {
+    font-size: 16px;
+    color: white;
+}
+
+.past-job-none {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }

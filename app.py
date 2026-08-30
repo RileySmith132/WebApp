@@ -188,7 +188,7 @@ def inquiries():
             FROM inquiries
             JOIN jobs ON inquiries.job_id = jobs.job_id
             JOIN users ON inquiries.lister_id = users.user_id
-            WHERE inquiries.user_id = ?
+            WHERE inquiries.user_id = ? AND inquiries.dismissed = 'no'
         ''', (user_id,)).fetchall()
 
     pending_inquiries = cursor.execute('''
@@ -206,7 +206,7 @@ def inquiries():
         JOIN jobs ON inquiries.job_id = jobs.job_id
         JOIN users AS applicant ON inquiries.user_id = applicant.user_id
         JOIN users AS lister ON inquiries.lister_id = lister.user_id
-        WHERE inquiries.lister_id = ?
+        WHERE inquiries.lister_id = ? AND inquiries.status = 'pending'
     ''', (user_id,)).fetchall()
 
     conn.close()
@@ -231,6 +231,7 @@ def accept(inquiry_id):
 
     cursor.execute('UPDATE inquiries SET status = ? WHERE inquiry_id = ?', (inquiry_status, inquiry_id,))
     cursor.execute('UPDATE jobs SET completed = ? WHERE job_id = ?', ('yes', job_id,))
+    cursor.execute("UPDATE inquiries SET status = 'declined' WHERE job_id = ? AND inquiry_id != ? AND status = 'pending'", (job_id, inquiry_id,))
 
     conn.commit()
     conn.close()
@@ -260,7 +261,101 @@ def past_jobs():
     if 'user_email' not in session:
         return redirect('/login')
 
-    return render_template('past-jobs.html')
+    user_id = session['user_id']
+
+    conn = sqlite3.connect('app.db')
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    my_completed_jobs = cursor.execute('''
+    SELECT
+        inquiries.inquiry_id,
+        inquiries.status,
+        inquiries.phone,
+        inquiries.why,
+        inquiries.time,
+
+        jobs.job_id,
+        jobs.job_title,
+        jobs.job_desc,
+        jobs.job_location,
+        jobs.pay,
+
+        lister.user_id AS lister_id,
+        lister.user_name AS lister_name,
+        lister.user_email AS lister_email
+
+    FROM inquiries
+
+    JOIN jobs
+        ON inquiries.job_id = jobs.job_id
+
+    JOIN users AS lister
+        ON jobs.user_id = lister.user_id
+
+    WHERE inquiries.user_id = ?
+    AND inquiries.status IN ('accepted', 'declined')
+
+    ''', (user_id,)).fetchall()
+
+    my_listed_jobs = cursor.execute('''
+        SELECT
+            jobs.job_id,
+            jobs.job_title,
+            jobs.job_desc,
+            jobs.job_location,
+            jobs.pay,
+            jobs.completed,
+
+            inquiries.inquiry_id,
+            inquiries.status,
+            inquiries.phone,
+            inquiries.why,
+            inquiries.time,
+
+            applicant.user_id AS applicant_id,
+            applicant.user_name AS applicant_name,
+            applicant.user_email AS applicant_email,
+
+            lister.user_name AS lister_name,
+            lister.user_email AS lister_email
+
+        FROM jobs
+
+        LEFT JOIN inquiries
+            ON jobs.job_id = inquiries.job_id
+            AND inquiries.status = 'accepted'
+
+        LEFT JOIN users AS applicant
+            ON inquiries.user_id = applicant.user_id
+
+        JOIN users AS lister
+            ON jobs.user_id = lister.user_id
+
+        WHERE jobs.user_id = ?
+        AND jobs.completed = 'yes'
+
+        ''', (user_id,)).fetchall()
+
+    return render_template('past-jobs.html', my_jobs=my_completed_jobs, my_listed=my_listed_jobs)
+
+
+@app.route('/ok-pressed/<int:inquiry_id>')
+def ok(inquiry_id):
+    if 'user_email' not in session:
+        return redirect('/login')
+
+    user_id = session['user_id']
+
+    conn = sqlite3.connect('app.db')
+    cursor = conn.cursor()
+
+    cursor.execute("UPDATE inquiries SET dismissed = 'yes' WHERE inquiry_id = ? AND user_id = ? AND status IN ('accepted', 'declined')", (inquiry_id, user_id,))
+
+    conn.commit()
+    conn.close()
+
+    return redirect('/past-jobs')
 
 
 if __name__ == '__main__':
