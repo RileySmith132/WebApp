@@ -12,11 +12,11 @@
                 <div class="my_inquiry">
                     <div class="my-inquiry-left">
                         <h1 class="my-inquiry-title">{{ inquiry['job_title'] }}</h1>
-                        <p class="my-inquiry-desc">{{ inquiry['job_desc'] }}</p>
-                        <p class="my-inquiry-location">{{ inquiry['job_location'] }}</p>
-                        <p class="my-inquiry-user-name">{{ inquiry['lister_name'] }}</p>
-                        <p class="my-inquiry-user-email">{{ inquiry['lister_email'] }}</p>
-                        <p class="my-inquiry-pay">${{ inquiry['pay'] }}</p>
+                        <p class="my-inquiry-p">Description: {{ inquiry['job_desc'] }}</p>
+                        <p class="my-inquiry-p">Location: {{ inquiry['job_location'] }}</p>
+                        <p class="my-inquiry-p">Name: {{ inquiry['lister_name'] }}</p>
+                        <p class="my-inquiry-p">Email: {{ inquiry['lister_email'] }}</p>
+                        <p class="my-inquiry-p">Pay: ${{ inquiry['pay'] }}</p>
                     </div>
 
                     <div class="my-inquiry-right">
@@ -60,11 +60,11 @@
                 <div class="my_inquiry">
                     <div class="my-inquiry-left">
                         <h1 class="my-inquiry-title">{{ inquiry['job_title'] }}</h1>
-                        <p class="my-inquiry-desc">{{ inquiry['job_desc'] }}</p>
-                        <p class="my-inquiry-location">Location: {{ inquiry['job_location'] }}</p>
-                        <p class="my-inquiry-user-name">{{ inquiry['lister_name'] }}</p>
-                        <p class="my-inquiry-user-email">{{ inquiry['lister_email'] }}</p>
-                        <p class="my-inquiry-pay">Pay: ${{ inquiry['pay'] }}</p>
+                        <p class="my-inquiry-p">{{ inquiry['job_desc'] }}</p>
+                        <p class="my-inquiry-p">Location: {{ inquiry['job_location'] }}</p>
+                        <p class="my-inquiry-p">Name: {{ inquiry['lister_name'] }}</p>
+                        <p class="my-inquiry-p">Email: {{ inquiry['lister_email'] }}</p>
+                        <p class="my-inquiry-p">Pay: ${{ inquiry['pay'] }}</p>
                     </div>
 
                     <div class="my-inquiry-right">

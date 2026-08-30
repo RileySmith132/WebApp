@@ -841,7 +841,7 @@ body {
 }
 
 .past-jobs-bottom-title {
-    margin-top: 250px;
+    margin-top: 200px;
 }
 
 .past-jobs-top,
@@ -906,4 +906,10 @@ body {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 40px;
+}
+
+.no-jobs-title {
+    text-align: center;
+    margin-top: 180px;
+    margin-bottom: 60px;
 }

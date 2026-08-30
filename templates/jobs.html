@@ -5,17 +5,22 @@
 {% block content %}
 
     <div class="all-jobs-container">
-        {% for job in jobs %}
-            <div class="job-container" id="job--{ loop.index }">
-                <h1 class="job-title">{{ job[3] }}</h1>
-                <p class="job-desc">{{ job[2] }}</p>
-                <p class="job-location">{{ job[4] }}</p>
-                <p class="job-user-name">{{ job[7] }}</p>
-                <p class="job-user-email">{{ job[8] }}</p>
-                <p class="job-pay">${{ job[6] }}</p>
-                <a href="{{ url_for('job_details', job_id=job[1]) }}"><button class="query-btn">Query</button></a>
-            </div>
-        {% endfor %}
+        {% if jobs %}
+            {% for job in jobs %}
+                <div class="job-container" id="job--{ loop.index }">
+                    <h1 class="job-title">{{ job[3] }}</h1>
+                    <p class="job-desc">{{ job[2] }}</p>
+                    <p class="job-location">{{ job[4] }}</p>
+                    <p class="job-user-name">{{ job[7] }}</p>
+                    <p class="job-user-email">{{ job[8] }}</p>
+                    <p class="job-pay">${{ job[6] }}</p>
+                    <a href="{{ url_for('job_details', job_id=job[1]) }}"><button class="query-btn">Query</button></a>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <h1 class="no-jobs-title">No jobs have been listed.</h1>
+        {% endif %}
     </div>
 
 {% endblock %}
