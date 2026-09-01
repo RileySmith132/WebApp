@@ -60,6 +60,82 @@ body {
     opacity: 0.6;
 }
 
+.home-left {
+    width: 50%;
+    height: 100%;
+}
+
+.home-right {
+    display: flex;
+    width: 50%;
+    height: 100%;
+}
+
+.home-txt {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    width: 50%;
+    padding-left: 40px;
+    margin-top: 80px;
+    margin-left: 110px;
+    margin-bottom: 20px;
+}
+
+.home-job-btn {
+    margin-left: 150px;
+    font-size: 16px;
+    margin-right: 80px;
+    background-color: white;
+    color: #427dd4;
+    border: none;
+    border-radius: 18px;
+    padding: 7px 20px 7px 20px;
+    font-weight: bold;
+}
+
+.home-main-2 {
+    margin-top: 7vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 0 5%;
+}
+
+.footer {
+    margin-top: 100px;
+    width: 100%;
+    height: 40vh;
+    background-color: #285A9E;
+    padding-top: 30px;
+}
+
+.footer-title {
+    color: white;
+    margin-left: 40px;
+}
+
+.footer-text {
+    color: white;
+    margin-left: 40px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    margin-top: 90px;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    margin-right: 50px;
+}
+
+.footer-top {
+    margin-bottom: 20px;
+}
+
 @media (max-width: 1080px) {
     .nav-title {
         display: none;
@@ -130,6 +206,74 @@ body {
     }
 }
 
+@media(max-width: 950px) {
+    .home-img, .home-right {
+        display: none;
+        width: 0%;
+    }
+
+    .home-left {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .home-txt {
+        width: 70%;
+        margin: 0 0 20px 0;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .home-job-btn {
+        margin: 0;
+    }
+}
+
+@media(max-width: 900px) {
+    .home-main-2 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+@media(max-width: 500px) {
+    .home-main-2 {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 25px;
+    }
+}
+
+@media(max-width: 640px) {
+    .footer-top {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer {
+        height: auto;
+    }
+
+    .footer-text {
+        margin: 10px 0 0 0;
+    }
+
+    .footer-title {
+        margin: 20px 0;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+
 .index-main-content {
     display: flex;
     background-color: #427dd4;
@@ -139,50 +283,8 @@ body {
     border-radius: 10px;
 }
 
-.home-txt {
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    width: 50%;
-    padding-left: 40px;
-    margin-top: 80px;
-    margin-left: 110px;
-    margin-bottom: 20px;
-}
-
-.home-left {
-    width: 50%;
-    height: 100%;
-}
-
-.home-right {
-    display: flex;
-    width: 50%;
-    height: 100%;
-}
-
-.home-job-btn {
-    margin-left: 150px;
-    font-size: 16px;
-    margin-right: 80px;
-    background-color: white;
-    color: #427dd4;
-    border: none;
-    border-radius: 18px;
-    padding: 7px 20px 7px 20px;
-    font-weight: bold;
-}
-
 .home-job-btn:hover {
     cursor: pointer;
-}
-
-.home-main-2 {
-    margin-top: 7vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    padding: 0 5% 0 5%;
 }
 
 .info {
@@ -193,7 +295,9 @@ body {
     color: white;
     text-align: center;
     border-radius: 10px;
-    height: 25vh;
+    min-height: 25vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .info:hover {
@@ -206,8 +310,9 @@ body {
 }
 
 .home-img {
-    height: 320px;
+    width: 70%;
     margin-top: 36px;
+    object-fit: cover;
 }
 
 .home-bold-txt {
@@ -217,41 +322,9 @@ body {
 
 .info-txt {
     font-size: 16px;
-    width: 250px;
-}
-
-.footer {
-    margin-top: 100px;
     width: 100%;
-    height: 40vh;
-    background-color: #285A9E;
-    padding-top: 30px;
-}
-
-.footer-title {
-    color: white;
-    margin-left: 40px;
-}
-
-.footer-text {
-    color: white;
-    margin-left: 40px;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    margin-top: 90px;
-}
-
-.footer-link {
-    color: white;
-    text-decoration: none;
-    margin-right: 50px;
-}
-
-.footer-top {
-    margin-bottom: 20px;
+    max-width: 250px;
+    margin: 0;
 }
 
 .login-container {
