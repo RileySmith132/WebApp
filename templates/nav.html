@@ -1,16 +1,25 @@
 
 <div class="nav-bar">
-    <a><h1 class="nav-title">JobStart</h1></a>
+    <img src="/static/images/menu-icon.webp" alt="burger menu icon" class="menu-icon" onclick="show_menu();">
+
+    <a href="{{ url_for('root') }}"><h1 class="nav-title">JobStart</h1></a>
     <a class="nav-link" href="{{ url_for('root') }}" id="nav-home-link">Home</a>
     <a class="nav-link" href="{{ url_for('jobs') }}">Jobs</a>
     <a class="nav-link" href="{{ url_for('past_jobs') }}">Past Jobs</a>
     <a class="nav-link" href="{{ url_for('list_job') }}">List a Job</a>
     <a class="nav-link" href="{{ url_for('inquiries') }}">Inquiries</a>
     {% if session.get('user_email') %}
-        <a href="/logout"><button class="login-nav-btn">Logout</button></a>
+        <a href="/logout" class="login-nav-link"><button class="login-nav-btn">Logout</button></a>
     {% else %}
-        <a href="/login"><button class="login-nav-btn">Login</button></a>
+        <a href="/login" class="login-nav-link"><button class="login-nav-btn">Login</button></a>
     {% endif %}
 
 </div>
   
+<div class="menu-links-hidden" id="menu-links-container">
+    <a class="menu-link" href="{{ url_for('root') }}">Home</a>
+    <a class="menu-link" href="{{ url_for('jobs') }}">Jobs</a>
+    <a class="menu-link" href="{{ url_for('past_jobs') }}">Past Jobs</a>
+    <a class="menu-link" href="{{ url_for('list_job') }}">List a Job</a>
+    <a class="menu-link" href="{{ url_for('inquiries') }}">Inquiries</a>
+</div>

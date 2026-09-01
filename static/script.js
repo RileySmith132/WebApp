@@ -21,3 +21,15 @@ function check_pwd() {
             error_txt.classList.replace('pwd-error-show', 'pwd-error-hide')
     }});
 };
+
+function show_menu() {
+    const menu_links = document.getElementById('menu-links-container')
+     
+    if (menu_links.classList == 'menu-links-hidden') {
+        menu_links.classList.replace('menu-links-hidden', 'menu-links-show');
+    }
+
+    else {
+        menu_links.classList.replace('menu-links-show', 'menu-links-hidden');
+    };
+}
