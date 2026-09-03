@@ -4,9 +4,12 @@
 
 {% block content %}
 
+    <!--form for creating a new account-->
     <div class="signup-container">
+        <!--The form sends the new account details to the signup route-->
         <form class="signup-form" method="POST" action="/signup">
             <h1 class="signup-title">Create an account</h1>
+            <!--The user enters their name, email, and password to create an account-->
             <p id="signup-name-txt" class="signup-txt">Name</p>
             <input id="signup-name-input" class="signup-input" placeholder="Enter your name" name="name" required>
             <p id="signup-email-txt" class="login-txt">Email</p>
@@ -15,8 +18,11 @@
             <input id="signup-pwd1-input" class="signup-input" placeholder="Create a password" name="pwd1" type="password" required>
             <p id="signup-pwd2-txt" class="signup-txt">Password</p>
             <input id="signup-pwd2-input" class="signup-input" placeholder="Repeat Password" name="pwd2" type="password" required>
+            <!--This message is shown if the two passwords do not match-->
             <p class="pwd-error-hide">Passwords do not match!</p>
+            <!--This button checks the passwords and submits the signup form-->
             <button class="signup-submit-btn" type="submit" onclick="check_pwd();">Create Account</button>
+            <!--Link to the login page for user who already have an account-->
             <a class="signup-link" href="/login">Already have an account? Login</a>
         </form>
     </div>

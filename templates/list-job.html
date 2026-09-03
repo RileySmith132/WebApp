@@ -4,9 +4,12 @@
 
 {% block content %}
 
+    <!--This section contains the form for listing a new job-->
     <div class="list-job-container">
+        <!--The form sends the new job details to the list route-->
         <form class="list-job-form" method="POST" action="/list">
             <h1 class="list-title">List a job</h1>
+            <!--The user enters the details of the job they are listing-->
             <p class="list-job-p">Job Title</p>
             <input class="list-job-input" placeholder="Job Title" name="job-title" required>
             <p class="list-job-p">Job Description</p>
@@ -15,6 +18,7 @@
             <input class="list-job-input" placeholder="e.g Albany, Silverdale, etc" name="job-location" required>
             <p class="list-job-p">Job Pay</p>
             <input class="list-job-input" placeholder="Pay" type="number" name="job-pay" required>
+            <!--This button submits the new job so it can be listed-->
             <button class="list-btn" type="submit">List job</button>
         </form>
     </div>

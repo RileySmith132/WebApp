@@ -5,8 +5,11 @@
 {% block content %}
 
     <div class="all-jobs-container">
+        <!--If there are jobs in the database, show them-->
         {% if jobs %}
+            <!--For each job in the database, create a container with its details-->
             {% for job in jobs %}
+                <!--This container shows the job information, the lister's contact details, and a button to inquire about the job-->
                 <div class="job-container" id="job--{ loop.index }">
                     <h1 class="job-title">{{ job[3] }}</h1>
                     <p class="job-desc">{{ job[2] }}</p>
@@ -19,6 +22,7 @@
             {% endfor %}
 
         {% else %}
+            <!--If there are no jobs in the database, show a message to tell the user-->
             <h1 class="no-jobs-title">No jobs have been listed.</h1>
         {% endif %}
     </div>

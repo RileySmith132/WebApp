@@ -4,17 +4,23 @@
 
  {% block content %}
 
+    <!--This section contains the form for logging into an account-->
     <div class="login-container">
+        <!--The form sends the user's login details to the logon route-->
         <form class="login-form" method="POST" action="/logon">
             <h1 class="login-title">Login to your account</h1>
+            <!--The user enters their email and password to log in-->
             <p id="email-txt" class="login-txt">Email</p>
             <input id="email-input" class="login-input" placeholder="example@example.com" type="email" name="email" required>
             <p id="pwd1-txt" class="login-txt">Password</p>
             <input id="login-pwd-input" class="login-input" placeholder="Enter your password" name="pwd" type="password" required>
+            <!--If there is an error while logging in then show it to the user-->
             {% if error %}
                 <p class="login-error">{{ error }}</p>
             {% endif %}
+            <!--button submits the login form-->
             <button class="login-submit-btn" type="submit">Login</button>
+            <!--Link to the signup page so users can create an account-->
             <a class="login-link" href="/signup">Don't have an account? Signup</a>
         </form>
     </div>

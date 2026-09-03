@@ -4,7 +4,9 @@
 
 {% block content %}
 
+    <!--This section shows the details of the job that the user wants to inquire about-->
     <div class="inquire-content">
+        <!--This section shows the job information-->
         <div class="inquire-info">
             <h1 class="inquire-info-title">Job info</h1>
             <p class="inquire-info-jobtitle">Job title: {{ job[3] }}</p>
@@ -13,16 +15,23 @@
             <p class="inquire-pay">Pay: ${{ job[6] }}</p>
         </div>
 
+        <!--This section contains the form where the user can make an inquiry-->
         <div class="inquire-userinput">
+            <!--The form sends the user's inquiry details to the inquire route-->
             <form class="inquire-form" method="POST" action="/inquire">
                 <h1 class="inquire-form-title">Inquire</h1>
+                <!--The user enters their phone number so the job lister can contact them-->
                 <p class="inquire-p">Phone number</p>
                 <input class="inquire-input" name="number" type="tel" placeholder="phone" required>
+                <!--The user explains why they should get the job-->
                 <p class="inquire-p">Why should you get this job?</p>
                 <input class="inquire-input" name="reason" placeholder="Why would you be best" required>
+                <!--The user chooses the date and time that they can do the job-->
                 <p class="inquire-p">When would best suit you to do this job?</p>
                 <input class="inquire-input" name="date" type="datetime-local" required>
+                <!--button submits the inquiry form-->
                 <button class="inquire-form-btn" type="submit">Inquire</button>
+                <!--hidden inputs so i can access the job and lister ids in my python-->
                 <input type="hidden" name="job_id" value="{{ job.job_id }}">
                 <input type="hidden" name="lister_id" value="{{ job.user_id }}">
             </form>

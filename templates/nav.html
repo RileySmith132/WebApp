@@ -1,4 +1,5 @@
 
+<!--This section contains links to the other pages of the website-->
 <div class="nav-bar">
     <img src="/static/images/menu-icon.webp" alt="burger menu icon" class="menu-icon" onclick="show_menu();">
 
@@ -8,6 +9,7 @@
     <a class="nav-link" href="{{ url_for('past_jobs') }}">Past Jobs</a>
     <a class="nav-link" href="{{ url_for('list_job') }}">List a Job</a>
     <a class="nav-link" href="{{ url_for('inquiries') }}">Inquiries</a>
+    <!--If the user is logged in then show a logout button, otherwise show a login button-->
     {% if session.get('user_email') %}
         <a href="/logout" class="login-nav-link"><button class="login-nav-btn">Logout</button></a>
     {% else %}
@@ -16,6 +18,7 @@
 
 </div>
   
+<!--Menu which is shown on smaller screen sizes-->
 <div class="menu-links-hidden" id="menu-links-container">
     <a class="menu-link" href="{{ url_for('root') }}">Home</a>
     <a class="menu-link" href="{{ url_for('jobs') }}">Jobs</a>

@@ -4,15 +4,20 @@
 
 {% block content %}
 
+<!--This section shows the jobs that the user applied for-->
 <h1 class="past-jobs-top-title">Jobs I applied for</h1>
 
 <div class="past-jobs-top">
 
+    <!--If the user has applied for any jobs then show them-->
     {% if my_jobs %}
 
+        <!--For each applied job create a card with its details and inquiry status-->
         {% for job in my_jobs %}
 
+            <!--shows the details of an applied job-->
             <div class="past-job">
+                <!--The left side of the card shows the job information and lister's contact details-->
                 <div class="past-job-left">
                     <h1 class="past-job-title">{{ job['job_title'] }}</h1>
                     <p class="past-job-desc">Description: {{ job['job_desc'] }}</p>
@@ -22,6 +27,7 @@
                     <p class="past-job-pay">Pay: ${{ job['pay'] }}</p>
                 </div>
 
+                <!--The right side of the card shows the user's inquiry details and its status-->
                 <div class="past-job-right">
                     <h1 class="past-job-details-title">Inquiry Details</h1>
                     <p class="past-job-p">My phone number: {{ job['phone'] }}</p>
@@ -34,21 +40,27 @@
         {% endfor %}
 
     {% else %}
+        <!--If the user has not applied for any jobs then show a message to let them know-->
         <p class="past-job-none">You have not appplied for any jobs.</p>
     {% endif %}
 
 </div>
 
 
+<!--This section shows the jobs that the user has listed-->
 <h1 class="past-jobs-bottom-title">Jobs I listed</h1>
 
 <div class="past-jobs-bottom">
 
+    <!--If there are any jobs that the user has listed then show them-->
     {% if my_listed %}
 
+        <!--For each listed job create a card with its details and applicant information-->
         {% for job in my_listed %}
 
+            <!--This card shows the details of a listed job-->
             <div class="past-job">
+                <!--The left side of the card shows the job information and lister's contact details-->
                 <div class="past-job-left">
                     <h1 class="past-job-title">{{ job['job_title'] }}</h1>
                     <p class="past-job-desc">Description: {{ job['job_desc'] }}</p>
@@ -58,6 +70,7 @@
                     <p class="past-job-pay">Pay: ${{ job['pay'] }}</p>
                 </div>
 
+                <!--The right side of the card shows the applicant's details and the inquiry status-->
                 <div class="past-job-right">
                     <h1 class="past-job-details-title">Applicant Details</h1>
                     <p class="past-job-p">Applicant name: {{ job['applicant_name'] }}</p>
@@ -72,6 +85,7 @@
         {% endfor %}
 
     {% else %}
+        <!--If the user has not completed any listed jobs then show a message to let them know-->
         <p class="past-job-none">You have no completed jobs that you listed.</p>
     {% endif %}
 

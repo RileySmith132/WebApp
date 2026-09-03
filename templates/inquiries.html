@@ -5,11 +5,14 @@
 {% block content %}
 
     <h1 class="inquiry-top-title">My inquiries</h1>
+    <!--If there are any inquiries in the database, show them-->
     {% if my_inquiries %}
 
         <div class="inquiries-top">
+            <!--For each inquiry in the database, create a div with details about the inquiry-->
             {% for inquiry in my_inquiries %}
                 <div class="my_inquiry">
+                    <!--The left side of the inquiry card, consisting of the details of the job, and the contact info of the user who listed the job-->
                     <div class="my-inquiry-left">
                         <h1 class="my-inquiry-title">{{ inquiry['job_title'] }}</h1>
                         <p class="my-inquiry-p">Description: {{ inquiry['job_desc'] }}</p>
@@ -19,27 +22,34 @@
                         <p class="my-inquiry-p">Pay: ${{ inquiry['pay'] }}</p>
                     </div>
 
+                    <!--The right side of the inquiry card, consisting of the details of the inquiry, and the contact info of the user who made the inquiry-->
                     <div class="my-inquiry-right">
                         <h1 class="inquiry-details-title">Inquiry Details</h1>
                         <p class="my-inquiry-p">My phone number: {{ inquiry['phone'] }}</p>
                         <p class="my-inquiry-p">My reason: {{ inquiry['why'] }}</p>
                         <p class="my-inquiry-p">Time that best suits me: {{ inquiry['time'] }}</p>
+
+                        <!--If the inquiry has been accepted, show an acceptance message-->
                         {% if inquiry['status'] =='accepted' %}
                             <div class="inquiry-accepted">
                                 <h1 class="accepted-title">Your inquiry was accepted</h1>
                                 <p class="inquiry-accepted-p">{{ inquiry['lister_name']}} accepted your inquiry. They will be in touch soon via phone or email.</p>
+                                <!--The button changes the dismissed column of the inquiry to yes so it can be removed from the jobs page-->
                                 <a href="/ok-pressed/{{ inquiry['inquiry_id'] }}"><button class="ok-btn">ok</button></a>
                             </div>
 
+                        <!--If the inquiry has been declined, show a declined message-->
                         {% elif inquiry['status'] =='declined' %}
                             <div class="inquiry-declined">
                                 <h1 class="declined-title">Your inquiry was declined</h1>
                                 <p class="inquiry-declined-p">
                                     Unfortunately, {{ inquiry['lister_name'] }} declined your inquiry.
                                 </p>
+                                <!--The button removes the declined inquiry from the user's inquiries-->
                                 <a href="/ok-pressed/{{ inquiry['inquiry_id'] }}"><button class="ok-btn">OK</button></a>
                             </div>
 
+                        <!--If the inquiry has not been accepted or declined, show its current status-->
                         {% else %}
                             <p class="my-inquiry-p" id="my-inquiry-status">Status: {{ inquiry['status'] }}</p>
                         {% endif %}
@@ -48,16 +58,22 @@
             {% endfor %}
 
         {% else %}
+            <!--If there are no inquiries in the database, show a message to let the user know-->
             <p class="no-inquiries">You have no inquiries.</p>
         {% endif %}
     </div>
 
+    <!--This section shows the inquiries that other users have made for the current user's jobs-->
     <div class="inquiries-bottom">
         <h1 class="inquiry-bottom-title">Pending inquiries</h1>
+
+        <!--If there are any pending inquiries, show them-->
         {% if pending_inquiries %}
 
+            <!--For each pending inquiry, create a card with the job and applicant details-->
             {% for inquiry in pending_inquiries %}
                 <div class="my_inquiry">
+                    <!--The left side of the card shows the details of the job-->
                     <div class="my-inquiry-left">
                         <h1 class="my-inquiry-title">{{ inquiry['job_title'] }}</h1>
                         <p class="my-inquiry-p">{{ inquiry['job_desc'] }}</p>
@@ -67,6 +83,7 @@
                         <p class="my-inquiry-p">Pay: ${{ inquiry['pay'] }}</p>
                     </div>
 
+                    <!--The right side of the card shows the applicant's inquiry details-->
                     <div class="my-inquiry-right">
                         <h1 class="inquiry-details-title">Inquiry Details</h1>
                         <p class="my-inquiry-p">Applicant name: {{ inquiry['applicant_name'] }}</p>
@@ -74,7 +91,11 @@
                         <p class="my-inquiry-p">Applicant phone number: {{ inquiry['phone'] }}</p>
                         <p class="my-inquiry-p">Applicant reason: {{ inquiry['why'] }}</p>
                         <p class="my-inquiry-p">Time that best suits the applicant: {{ inquiry['time'] }}</p>
+
+                        <!--The accept button accepts the applicant's inquiry-->
                         <a href="/accept-inquiry/{{ inquiry['inquiry_id'] }}"><button class="accept-inquiry-btn">Accept</button></a>
+
+                        <!--The decline button declines the applicant's inquiry-->
                         <a href="/decline-inquiry/{{ inquiry['inquiry_id'] }}"><button class="decline-inquiry-btn">Decline</button></a>
                     </div>
                 </div>
@@ -82,6 +103,7 @@
             {% endfor %}
 
         {% else %}
+            <!--If there are no pending inquiries, show a message to tell the user-->
             <p class="no-inquiries">You have no pending inquiries.</p>
         {% endif %}
     </div>

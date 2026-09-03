@@ -17,6 +17,7 @@
         <!--Basic structure for each page, consisting of a nav bar, the main content, and then the footer.-->
         {% include 'nav.html' %}
 
+        <!--If there are any flash messages, show them to the user-->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -27,7 +28,10 @@
             {% endif %}
         {% endwith %}
 
+        <!--This block contains the content for the current page-->
         {% block content %}{% endblock %}
+
+        <!--The footer is included at the bottom of every page-->
         {% include 'footer.html' %}
     </body>
 
