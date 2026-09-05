@@ -6,6 +6,7 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
+# Defining the routes for the web app
 @app.route('/')
 def root():
     return render_template('index.html')
@@ -20,14 +21,17 @@ def signup_page():
 
 @app.route('/signup', methods=["POST"])
 def signup():
+    # request.form gets the values from the signup form
     name = request.form['name']
     email = request.form['email']
     pwd = request.form['pwd2']
+    # Hash the password before saving it so the database doesnt have them in plain text
     hashed_pwd = generate_password_hash(pwd)
 
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
 
+    # Insert the new user's name, email, and hashed password into the users table.
     cursor.execute(
         'INSERT INTO users (user_name, user_email, user_pwd) VALUES (?, ?, ?)',
         (name, email, hashed_pwd)
@@ -41,16 +45,19 @@ def signup():
 
 @app.route('/logon', methods=["POST"])
 def logon():
+    # Get the email and password from the login form
     email = request.form['email']
     pwd = request.form['pwd']
 
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
 
+    # Find the password hash and user ID belonging to the submitted email address
     cursor.execute('SELECT user_pwd, user_id FROM users WHERE user_email = ?', (email,))
     result = cursor.fetchone()
     conn.close()
 
+    # Check if the hashed password in the database is the same as the password that the user entered
     if result:
         stored_password, user_id = result[0], result[1]
         if check_password_hash(stored_password, pwd):
@@ -75,6 +82,7 @@ def logout():
 
 @app.route('/list-job')
 def list_job():
+    # Check the session before displaying the form for creating a new job listing.
     if 'user_email' not in session:
         return redirect('/login')
 
@@ -86,6 +94,7 @@ def jobs():
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
+    # Select active jobs and join each one to the user who created it
     query = '''
         SELECT jobs.*, users.user_name, users.user_email 
         FROM jobs 
@@ -93,6 +102,7 @@ def jobs():
         WHERE jobs.completed = "no"
     '''
 
+    # Join each job to its owner, then filter out jobs that have already been completed.
     jobs = cursor.execute(query).fetchall()
     
 
@@ -102,10 +112,12 @@ def jobs():
 
 @app.route('/list', methods=['POST'])
 def list():
+    # Get the new jobs details from the job listing form
     title = request.form['job-title']
     desc = request.form['job-desc']
     location = request.form['job-location']
     pay = request.form['job-pay']
+    # Save the submitted listing to the database with the status set to no
     completed = 'no'
     user_id = session['user_id']
 
@@ -132,6 +144,7 @@ def job_details(job_id):
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
+    # Find the requested job by its ID so its details can be displayed.
     job = cursor.execute('SELECT * FROM jobs WHERE job_id = ?', (job_id,)).fetchone()
     conn.close()
 
@@ -143,17 +156,20 @@ def job_details(job_id):
 
 @app.route('/inquire', methods=["POST"])
 def inquire():
+    # Get the applicant's contact details and the IDs for the job
     phone = request.form['number']
     why = request.form['reason']
     time = request.form['date']
     lister_id = request.form['lister_id']
     job_id = request.form['job_id']
     user_id = session['user_id']
+    # Save the applicant's contact details and reason
     status = 'pending'
 
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
 
+    # Insert the new inquiry and connect it to the applicant, job, and job owner
     cursor.execute(
         'INSERT INTO inquiries (status, lister_id, job_id, user_id, phone, why, time) VALUES (?, ?, ?, ?, ?, ?, ?)',
         (status, lister_id, job_id, user_id, phone, why, time)
@@ -170,12 +186,14 @@ def inquiries():
     if 'user_email' not in session:
         return redirect('/login')
 
+    # session stores the ID of the currently signed-in user
     user_id = session['user_id']
 
     conn = sqlite3.connect('app.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
+    # Get the signed-in user's inquiries, including the job and job-owner details.
     my_inquiries = cursor.execute('''
             SELECT 
                 inquiries.*, 
@@ -191,6 +209,7 @@ def inquiries():
             WHERE inquiries.user_id = ? AND inquiries.dismissed = 'no'
         ''', (user_id,)).fetchall()
 
+    # Get pending inquiries for the user's jobs, including each applicant's details.
     pending_inquiries = cursor.execute('''
         SELECT 
             inquiries.*, 
@@ -220,6 +239,7 @@ def accept(inquiry_id):
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
 
+    # Find the job connected to the inquiry before changing any statuses
     cursor.execute('SELECT job_id FROM inquiries WHERE inquiry_id = ?', (inquiry_id,))
     result = cursor.fetchone()
 
@@ -229,8 +249,11 @@ def accept(inquiry_id):
 
     job_id = result[0]
 
+    # Mark the selected inquiry accepted, close its job, and decline other applicants
     cursor.execute('UPDATE inquiries SET status = ? WHERE inquiry_id = ?', (inquiry_status, inquiry_id,))
+    # Mark the related job as completed so it no longer appears as available
     cursor.execute('UPDATE jobs SET completed = ? WHERE job_id = ?', ('yes', job_id,))
+    # Decline all other pending inquiries for the same job
     cursor.execute("UPDATE inquiries SET status = 'declined' WHERE job_id = ? AND inquiry_id != ? AND status = 'pending'", (job_id, inquiry_id,))
 
     conn.commit()
@@ -247,6 +270,7 @@ def decline(inquiry_id):
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
 
+    # Change the selected inquiry from pending to declined
     cursor.execute('UPDATE inquiries SET status = ? WHERE inquiry_id = ?', (inquiry_status, inquiry_id,))
 
     conn.commit()
@@ -261,12 +285,14 @@ def past_jobs():
     if 'user_email' not in session:
         return redirect('/login')
 
+    # Use the signed-in user's ID to find their applications and completed listings
     user_id = session['user_id']
 
     conn = sqlite3.connect('app.db')
     conn.row_factory = sqlite3.Row
     cursor = conn.cursor()
 
+    # List applications made by the user that were accepted or declined
     my_completed_jobs = cursor.execute('''
     SELECT
         inquiries.inquiry_id,
@@ -298,6 +324,7 @@ def past_jobs():
 
     ''', (user_id,)).fetchall()
 
+    # List the user's completed jobs and include the applicant from the accepted inquiry
     my_listed_jobs = cursor.execute('''
         SELECT
             jobs.job_id,
@@ -350,6 +377,7 @@ def ok(inquiry_id):
     conn = sqlite3.connect('app.db')
     cursor = conn.cursor()
 
+    # Hide this finished inquiry from the applicant's list without deleting its record
     cursor.execute("UPDATE inquiries SET dismissed = 'yes' WHERE inquiry_id = ? AND user_id = ? AND status IN ('accepted', 'declined')", (inquiry_id, user_id,))
 
     conn.commit()

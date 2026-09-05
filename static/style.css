@@ -1,8 +1,10 @@
+/* Set the default spacing and font for the whole website */
 body {
     margin: 0;
     font-family: Arial;
 }
 
+/* Style the links and title in the main navigation bar */
 .nav-link {
     margin-right: 60px;
     font-size: 16px;
@@ -10,10 +12,12 @@ body {
     color: black;
 }
 
+/* Push the home link toward the right side of the navigation */
 #nav-home-link {
     margin-left: auto;
 }
 
+/* Position the site title in the navigation bar */
 .nav-title {
     position: absolute;
     left: 10%;
@@ -23,6 +27,7 @@ body {
     color: black;
 }
 
+/* Create the navigation bar */
 .nav-bar {
     position: relative;
     display: flex;
@@ -33,14 +38,17 @@ body {
     height: 60px;
 }
 
+/* Keep the mobile menu hidden until it is opened */
 .menu-links-hidden {
     display: none;
 }
 
+/* Hide the mobile menu icon on larger screens */
 .menu-icon {
     display: none;
 }
 
+/* Make the login button stand out from the navigation links */
 .login-nav-btn {
     font-size: 16px;
     margin-right: 140px;
@@ -60,17 +68,20 @@ body {
     opacity: 0.6;
 }
 
+/* Split the home page hero into a text area and an image area */
 .home-left {
     width: 50%;
     height: 100%;
 }
 
+/* Hold the image on the right side of the home page hero */
 .home-right {
     display: flex;
     width: 50%;
     height: 100%;
 }
 
+/* Style the main heading text on the home page */
 .home-txt {
     color: white;
     font-size: 40px;
@@ -82,6 +93,7 @@ body {
     margin-bottom: 20px;
 }
 
+/* Style the button that takes users to the available jobs */
 .home-job-btn {
     margin-left: 150px;
     font-size: 16px;
@@ -94,6 +106,7 @@ body {
     font-weight: bold;
 }
 
+/* Arrange the home page information panels in columns */
 .home-main-2 {
     margin-top: 7vh;
     display: grid;
@@ -102,6 +115,7 @@ body {
     padding: 0 5%;
 }
 
+/* Style the footer and position its links below the main content */
 .footer {
     margin-top: 100px;
     width: 100%;
@@ -110,43 +124,53 @@ body {
     padding-top: 30px;
 }
 
+/* Style the footer heading */
 .footer-title {
     color: white;
     margin-left: 40px;
 }
 
+/* Style the supporting text in the footer */
 .footer-text {
     color: white;
     margin-left: 40px;
 }
 
+/* Arrange the footer links in a row */
 .footer-links {
     display: flex;
     justify-content: center;
     margin-top: 90px;
 }
 
+/* Style each link in the footer */
 .footer-link {
     color: white;
     text-decoration: none;
     margin-right: 50px;
 }
 
+/* Hold the top part of the footer content */
 .footer-top {
     margin-bottom: 20px;
 }
 
+/* Hide the desktop navigation title on smaller screens */
 @media (max-width: 1080px) {
+    /* Hide the title when the navigation starts to get crowded */
     .nav-title {
         display: none;
     }
 }
 
+/* Replace the desktop navigation links with a mobile menu */
 @media (max-width: 900px) {
+    /* Hide desktop links from the mobile navigation */
     .nav-link {
         display: none;
     }
 
+    /* Show and position the menu icon on mobile screens */
     .menu-icon {
         display: inline;
         object-fit: cover;
@@ -154,25 +178,30 @@ body {
         margin-left: 8%;
     }
 
+    /* Indicate that the menu icon can be clicked */
     .menu-icon:hover {
         cursor: pointer;
     }
 
+    /* Center the title in the mobile navigation */
     .nav-title {
         display: inline;
         left: 50%;
         transform: translate(-50%, -50%);
     }
 
+    /* Push the login link to the right on mobile screens */
     .login-nav-link {
         margin-left: auto;
         margin-right: 8%;
     }
 
+    /* Remove the desktop button spacing on mobile screens */
     .login-nav-btn {
         margin-right: 0;
     }
 
+    /* Display the opened mobile links as a vertical menu */
     .menu-links-show {
         display: flex;
         flex-direction: column;
@@ -186,6 +215,7 @@ body {
         padding-top: 15px;
     }
 
+    /* Style each link inside the opened mobile menu */
     .menu-link {
         display: block;
         color: #427dd4;
@@ -196,22 +226,27 @@ body {
         margin: 0;
     }
 
+    /* Highlight a mobile menu link while it is hovered */
     .menu-link:hover {
         background-color: #427dd4;
         color: white;
     }
 
+    /* Slightly fade a mobile menu link while it is pressed */
     .menu-link:active {
         opacity: 0.7;
     }
 }
 
+/* Stack the home page content when there is not enough room for two columns */
 @media(max-width: 950px) {
+    /* Remove the hero image and right column on narrow screens */
     .home-img, .home-right {
         display: none;
         width: 0%;
     }
 
+    /* Center the remaining home page content on narrow screens */
     .home-left {
         width: 100%;
         display: flex;
@@ -220,6 +255,7 @@ body {
         justify-content: center;
     }
 
+    /* Resize and center the home page heading on narrow screens */
     .home-txt {
         width: 70%;
         margin: 0 0 20px 0;
@@ -227,26 +263,33 @@ body {
         text-align: center;
     }
 
+    /* Remove desktop margins from the home page button */
     .home-job-btn {
         margin: 0;
     }
 }
 
+/* Reduce the number of information panel columns on medium screens */
 @media(max-width: 900px) {
+    /* Change the information panels to two columns */
     .home-main-2 {
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
     }
 }
 
+/* Show one information panel per row on very small screens */
 @media(max-width: 500px) {
+    /* Change the information panels to one column */
     .home-main-2 {
         grid-template-columns: repeat(1, 1fr);
         gap: 25px;
     }
 }
 
+/* Stack and resize footer content on mobile screens */
 @media(max-width: 640px) {
+    /* Stack the footer heading and text on small screens */
     .footer-top {
         width: 100%;
         display: flex;
@@ -255,18 +298,22 @@ body {
         justify-content: center;
     }
 
+    /* Let the footer height fit its stacked content */
     .footer {
         height: auto;
     }
 
+    /* Reset footer text spacing for the mobile layout */
     .footer-text {
         margin: 10px 0 0 0;
     }
 
+    /* Reset footer title spacing for the mobile layout */
     .footer-title {
         margin: 20px 0;
     }
 
+    /* Allow footer links to wrap on small screens */
     .footer-links {
         flex-wrap: wrap;
         gap: 10px;
@@ -274,6 +321,7 @@ body {
 }
 
 
+/* Create the blue hero section on the home page */
 .index-main-content {
     display: flex;
     background-color: #427dd4;
@@ -283,10 +331,12 @@ body {
     border-radius: 10px;
 }
 
+/* Show that the home page button is interactive */
 .home-job-btn:hover {
     cursor: pointer;
 }
 
+/* Style each information panel on the home page */
 .info {
     display: flex;
     justify-content: center;
@@ -300,26 +350,31 @@ body {
     box-sizing: border-box;
 }
 
+/* Start the panel expansion animation when it is hovered */
 .info:hover {
     animation: expand 1s forwards;
 }
 
+/* Define the size change used when an information panel is hovered */
 @keyframes expand {
     0% {scale: 1;}
     100% {scale: 1.04;}
 }
 
+/* Size and crop the image used in the home page hero */
 .home-img {
     width: 70%;
     margin-top: 36px;
     object-fit: cover;
 }
 
+/* Emphasize bold text inside the home page content */
 .home-bold-txt {
     display: block;
     font-size: 20px;
 }
 
+/* Limit the width of text inside an information panel */
 .info-txt {
     font-size: 16px;
     width: 100%;
@@ -327,6 +382,7 @@ body {
     margin: 0;
 }
 
+/* Center the login form inside a blue panel */
 .login-container {
     display: flex;
     justify-content: center;
@@ -343,6 +399,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Arrange the login fields vertically */
 .login-form {
     display: flex;
     flex-direction: column;
@@ -350,6 +407,7 @@ body {
     max-width: 280px;
 }
 
+/* Style the login form heading */
 .login-title {
     text-align: center;
     margin: 0 0 30px 0;
@@ -357,6 +415,7 @@ body {
     font-weight: bold;
 }
 
+/* Style labels in the login form */
 .login-txt {
     margin: 0 0 8px 0;
     font-size: 14px;
@@ -364,6 +423,7 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* Style text fields in the login form */
 .login-input {
     padding: 12px 15px;
     margin-bottom: 20px;
@@ -376,10 +436,12 @@ body {
     transition: box-shadow 0.2s ease;
 }
 
+/* Highlight the login field that is currently selected */
 .login-input:focus {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
 }
 
+/* Style the button that submits the login form */
 .login-submit-btn {
     margin-top: 15px;
     padding: 14px;
@@ -393,22 +455,26 @@ body {
     transition: all 0.2s ease;
 }
 
+/* Lift the login button when the pointer is over it */
 .login-submit-btn:hover {
     cursor: pointer;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Return the login button to its normal position when pressed */
 .login-submit-btn:active {
     transform: translateY(0);
 }
 
+/* Center the link below the login form */
 .login-link {
     text-align: center;
     margin-top: 15px;
     color: white;
 }
 
+/* Center the sign-up form inside a blue panel */
 .signup-container {
     display: flex;
     justify-content: center;
@@ -425,6 +491,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Arrange the sign-up fields vertically */
 .signup-form {
     display: flex;
     flex-direction: column;
@@ -432,6 +499,7 @@ body {
     max-width: 280px; 
 }
 
+/* Style the sign-up form heading */
 .signup-title {
     text-align: center;
     margin: 0 0 30px 0;
@@ -439,6 +507,7 @@ body {
     font-weight: bold;
 }
 
+/* Style labels shared by the sign-up and login forms */
 .signup-txt, .login-txt {
     margin: 0 0 8px 0;
     font-size: 14px;
@@ -446,6 +515,7 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* Style text fields in the sign-up form */
 .signup-input {
     padding: 12px 15px;
     margin-bottom: 20px; 
@@ -458,10 +528,12 @@ body {
     transition: box-shadow 0.2s ease;
 }
 
+/* Highlight the sign-up field that is currently selected */
 .signup-input:focus {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4); 
 }
 
+/* Style the button that submits the sign-up form */
 .signup-submit-btn {
     margin-top: 15px;
     padding: 14px;
@@ -475,16 +547,19 @@ body {
     transition: all 0.2s ease;
 }
 
+/* Lift the sign-up button when the pointer is over it */
 .signup-submit-btn:hover {
     cursor: pointer;
     transform: translateY(-2px); 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Return the sign-up button to its normal position when pressed */
 .signup-submit-btn:active {
     transform: translateY(0);
 }
 
+/* Position the link below the sign-up form */
 .signup-link {
     display: block;
     text-align: center;
@@ -492,20 +567,24 @@ body {
     color: white;
 }
 
+/* Underline the sign-up link when it is hovered */
 .signup-link:hover {
     text-decoration: underline;
     opacity: 1;
 }
 
+/* Keep the password error hidden when there is no error */
 .pwd-error-hide {
     display: none;
 }
 
+/* Show the password error message when validation fails */
 .pwd-error-show {
     color: rgb(255, 209, 123);
     margin-top: -10px;
 }
 
+/* Display available jobs as responsive cards */
 .all-jobs-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -514,6 +593,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Style each job card and keep its button at the bottom */
 .job-container {
     background: linear-gradient(135deg, #427dd4, #285A9E);
     color: white;
@@ -527,10 +607,12 @@ body {
     transition: transform 0.25 ease, box-shadow 0.25s ease;
 }
 
+/* Add a stronger shadow when a job card is hovered */
 .job-container:hover {
     box-shadow: 0 14px 28px rgba(66, 125, 212, 0.35);
 }
 
+/* Style the title displayed on a job card */
 .job-title {
     font-size: 24px;
     margin: 0 0 12px 0;
@@ -539,6 +621,7 @@ body {
     padding-bottom: 10px;
 }
 
+/* Let the job description fill the available card space */
 .job-desc {
     font-size: 15px;
     line-height: 1.5;
@@ -547,6 +630,7 @@ body {
     flex-grow: 1;
 }
 
+/* Style job metadata such as location, owner, email, and pay */
 .job-location, 
 .job-user-name, 
 .job-user-email,
@@ -563,6 +647,7 @@ body {
 .job-user-email::before { content: '✉️'; margin-right: 8px; }
 .job-pay::before { content: '💵'; margin-right: 8px; }
 
+/* Style the button used to view or inquire about a job */
 .query-btn {
     align-self: flex-start;
     margin-top: 20px;
@@ -577,6 +662,7 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Lift the job action button when it is hovered */
 .query-btn:hover {
     cursor: pointer;
     transform: translateY(-2px);
@@ -584,11 +670,13 @@ body {
     opacity: 1;
 }
 
+/* Reduce the job action button while it is pressed */
 .query-btn:active {
     transform: translateY(0);
     opacity: 0.8;
 }
 
+/* Center the form used to create a new job listing */
 .list-job-container {
     display: flex;
     justify-content: center;
@@ -605,6 +693,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Arrange the new job listing fields vertically */
 .list-job-form {
     display: flex;
     flex-direction: column;
@@ -612,6 +701,7 @@ body {
     max-width: 280px;
 }
 
+/* Style the new job listing form heading */
 .list-title {
     text-align: center;
     margin: 0 0 30px 0;
@@ -619,6 +709,7 @@ body {
     font-weight: bold;
 }
 
+/* Style labels in the new job listing form */
 .list-job-p {
     margin: 0 0 8px 0;
     font-size: 14px;
@@ -626,6 +717,7 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* Style fields used to enter new job details */
 .list-job-input {
     padding: 12px 15px;
     margin-bottom: 20px;
@@ -638,10 +730,12 @@ body {
     transition: box-shadow 0.2s ease;
 }
 
+/* Highlight the new job field that is currently selected */
 .list-job-input:focus {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
 }
 
+/* Style the button that submits a new job listing */
 .list-btn {
     margin-top: 15px;
     padding: 14px;
@@ -655,16 +749,20 @@ body {
     transition: all 0.2s ease;
 }
 
+/* Lift the listing button when it is hovered */
 .list-btn:hover {
     cursor: pointer;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Return the listing button to its normal position when pressed */
 .list-btn:active {
     transform: translateY(0);
 }
 
+/* Display temporary success or error messages over the page */
+/* Position and animate temporary messages above the page content */
 .flash-message {
     position: fixed;
     top: 50%;
@@ -682,12 +780,14 @@ body {
     animation: fadeOut 0.5s ease 2.5s forwards;
 }
 
+/* Gradually hide a temporary message after it has been displayed */
 @keyframes fadeOut {
     from {opacity: 1;}
     to {opacity: 0; visibility: hidden;}
 }
 
 
+/* Divide the inquiry page into job information and an input form */
 .inquire-content {
     display: flex;
     justify-content: center;
@@ -702,6 +802,7 @@ body {
     overflow: hidden;
 }
 
+/* Display the selected job information on the inquiry page */
 .inquire-info {
     width: 50%;
     padding: 50px;
@@ -711,12 +812,14 @@ body {
     justify-content: flex-start;
 }
 
+/* Style the selected job title on the inquiry page */
 .inquire-info-title {
     margin: 0 0 30px 0;
     font-size: 26px;
     height: 31px;
 }
 
+/* Style the job details shown beside the inquiry form */
 .inquire-info-jobtitle,
 .inquire-jobdesc,
 .inquire-location,
@@ -726,6 +829,7 @@ body {
     margin: 0 0 20px 0;
 }
 
+/* Position the applicant input section beside the job information */
 .inquire-userinput {
     width: 50%;
     padding: 50px;
@@ -735,6 +839,7 @@ body {
     align-items: flex-start;
 }
 
+/* Arrange the inquiry fields vertically */
 .inquire-form {
     display: flex;
     flex-direction: column;
@@ -742,6 +847,7 @@ body {
     max-width: 300px;
 }
 
+/* Style the inquiry form heading */
 .inquire-form-title {
     text-align: center;
     margin: 0 0 30px 0;
@@ -749,12 +855,14 @@ body {
     height: 31px;
 }
 
+/* Style labels in the inquiry form */
 .inquire-p {
     margin: 0 0 8px 0;
     font-size: 14px;
     font-weight: bold;
 }
 
+/* Style fields where the applicant enters inquiry details */
 .inquire-input {
     padding: 12px 15px;
     margin-bottom: 20px;
@@ -766,10 +874,12 @@ body {
     outline: none;
 }
 
+/* Highlight the inquiry field that is currently selected */
 .inquire-input:focus {
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
 }
 
+/* Style the button that submits an inquiry */
 .inquire-form-btn {
     margin-top: 15px;
     padding: 14px;
@@ -782,25 +892,30 @@ body {
     color: #427dd4;
 }
 
+/* Lift the inquiry button when it is hovered */
 .inquire-form-btn:hover {
     cursor: pointer;
     transform: translateY(-2px);
 }
 
+/* Add spacing between the applicant and job-owner inquiry sections */
 .inquiries-top {
     margin-bottom: 100px;
 }
 
+/* Center the heading above the user's completed inquiries */
 .inquiry-bottom-title {
     text-align: center;
     margin-top: 100px;
 }
 
+/* Center the heading above the user's current inquiries */
 .inquiry-top-title {
     text-align: center;
     margin-top: 50px;
 }
 
+/* Center the message shown when there are no inquiries */
 .no-inquiries {
     text-align: center;
     font-size: 17px;
@@ -808,6 +923,7 @@ body {
     margin-bottom: 250px;
 }
 
+/* Lay out the details of an inquiry in two side-by-side columns */
 .my_inquiry {
     display: flex;
     justify-content: space-between;
@@ -823,6 +939,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Hold the job and owner information on the left side */
 .my-inquiry-left {
     width: 50%;
     padding-right: 30px;
@@ -831,6 +948,7 @@ body {
     flex-direction: column;
 }
 
+/* Hold the inquiry status and actions on the right side */
 .my-inquiry-right {
     width: 50%;
     padding-left: 30px;
@@ -839,13 +957,15 @@ body {
     flex-direction: column;
 }
 
-/* Inner Elements */
+/* Style the individual pieces of information inside an inquiry */
+/* Style the title of the job connected to the inquiry */
 .my-inquiry-title {
     font-size: 24px;
     font-weight: bold;
     margin: 0 0 15px 0;
 }
 
+/* Style the description of the job connected to the inquiry */
 .my-inquiry-desc {
     font-size: 15px;
     line-height: 1.5;
@@ -853,6 +973,7 @@ body {
     opacity: 0.95;
 }
 
+/* Style the job and owner details shown in the inquiry */
 .my-inquiry-location,
 .my-inquiry-user-name,
 .my-inquiry-user-email,
@@ -862,22 +983,26 @@ body {
     opacity: 0.9;
 }
 
+/* Style the applicant's submitted inquiry information */
 .my-inquiry-p {
     font-size: 15px;
     line-height: 1.6;
     margin: 0 0 14px 0;
 }
 
+/* Emphasize whether the inquiry was accepted or declined */
 #my-inquiry-status {
     font-weight: bold;
 }
 
+/* Style the heading for the inquiry details section */
 .inquiry-details-title {
     font-size: 24px;
     font-weight: bold;
     margin: 0 0 15px 0;
 }
 
+/* Keep action links inside the inquiry area compact */
 .my-inquiry-right a {
     display: inline;
     text-decoration: none;
@@ -885,6 +1010,7 @@ body {
     margin: 0;
 }
 
+/* Style the buttons used to accept or decline an inquiry */
 .accept-inquiry-btn,
 .decline-inquiry-btn {
     padding: 10px 150px;
@@ -898,20 +1024,24 @@ body {
     margin-top: 15px;
 }
 
+/* Add spacing after the accept button */
 .accept-inquiry-btn {
     margin-right: 8px;
 }
 
+/* Fade inquiry action buttons when they are hovered */
 .accept-inquiry-btn:hover,
 .decline-inquiry-btn:hover {
     opacity: 0.8;
 }
 
+/* Fade inquiry action buttons further while they are pressed */
 .accept-inquiry-btn:active,
 .decline-inquiry-btn:active {
     opacity: 0.6;
 }
 
+/* Display the confirmation panel for an accepted inquiry */
 .inquiry-accepted {
     margin-top: 25px;
     padding: 22px 25px;
@@ -922,12 +1052,14 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* Style the accepted inquiry heading */
 .accepted-title {
     margin: 0 0 12px 0;
     font-size: 24px;
     color: black;
 }
 
+/* Style the message inside the accepted inquiry panel */
 .inquiry-accepted-p {
     margin: 0 auto 20px auto;
     max-width: 450px;
@@ -936,6 +1068,7 @@ body {
     color: black;
 }
 
+/* Style the button that dismisses a finished inquiry */
 .ok-btn {
     padding: 10px 28px;
     border: none;
@@ -948,11 +1081,13 @@ body {
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+/* Change and lift the dismiss button when it is hovered */
 .ok-btn:hover {
     background-color: #356bb9;
     transform: translateY(-1px);
 }
 
+/* Display the message panel for a declined inquiry */
 .inquiry-declined {
     margin-top: 25px;
     padding: 25px;
@@ -962,12 +1097,14 @@ body {
     text-align: center;
 }
 
+/* Style the declined inquiry heading */
 .declined-title {
     margin: 0 0 10px 0;
     font-size: 24px;
     color: black;
 }
 
+/* Style the message inside the declined inquiry panel */
 .inquiry-declined-p {
     margin: 0 0 20px 0;
     font-size: 16px;
@@ -975,6 +1112,7 @@ body {
     line-height: 1.5;
 }
 
+/* Adjust the dismiss button inside a declined inquiry panel */
 .inquiry-declined .ok-btn {
     padding: 10px 25px;
     border: none;
@@ -985,7 +1123,9 @@ body {
     cursor: pointer;
 }
 
+/* Center headings for the two past-jobs sections */
 .past-jobs-top-title,
+/* Add extra space before the listed completed jobs section */
 .past-jobs-bottom-title {
     text-align: center;
     margin-top: 40px;
@@ -996,12 +1136,14 @@ body {
     margin-top: 200px;
 }
 
+/* Set the width and alignment of the past-jobs sections */
 .past-jobs-top,
 .past-jobs-bottom {
     width: 80%;
     margin: 0 auto;
 }
 
+/* Display each past job as a two-part information panel */
 .past-job {
     display: flex;
     width: 100%;
@@ -1011,6 +1153,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Style both columns in a past job panel */
 .past-job-left,
 .past-job-right {
     width: 50%;
@@ -1020,22 +1163,26 @@ body {
     box-sizing: border-box;
 }
 
+/* Style the title of a past job */
 .past-job-title {
     margin-top: 0;
     font-size: 28px;
     color: white;
 }
 
+/* Style the description of a past job */
 .past-job-desc {
     font-size: 16px;
     color: white;
 }
 
+/* Style the location of a past job */
 .past-job-location {
     font-size: 16px;
     color: white;
 }
 
+/* Style the owner and payment details of a past job */
 .past-job-user-name,
 .past-job-user-email,
 .past-job-pay {
@@ -1043,23 +1190,27 @@ body {
     color: white;
 }
 
+/* Style the heading for past job inquiry details */
 .past-job-details-title {
     margin-top: 0;
     font-size: 24px;
     color: white;
 }
 
+/* Style the inquiry information shown for a past job */
 .past-job-p {
     font-size: 16px;
     color: white;
 }
 
+/* Center the message shown when no past jobs exist */
 .past-job-none {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 40px;
 }
 
+/* Position the heading shown when there are no available jobs */
 .no-jobs-title {
     text-align: center;
     margin-top: 180px;
